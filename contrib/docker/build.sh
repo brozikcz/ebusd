@@ -19,7 +19,7 @@ fi
 version=`cat ../../VERSION`
 source='../..'
 images='bullseye'
-tagprefix=docker.io/john30/ebusd
+tagprefix=docker.io/brozikcz/ebusd
 extratag=
 
 if [[ -z "$1" ]]; then
