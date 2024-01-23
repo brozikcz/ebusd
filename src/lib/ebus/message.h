@@ -1590,6 +1590,12 @@ class MessageMap : public MappedFileReader {
   void addPollMessage(bool toFront, Message* message);
 
   /**
+   * Remove a @a Message from the list of instances to poll.
+   * @param message the @a Message to poll.
+   */
+  void removePollMessage(Message* message);
+
+  /**
    * Decode circuit specific data.
    * @param circuit the name of the circuit.
    * @param outputFormat the @a OutputFormat options to use.
