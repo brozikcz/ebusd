@@ -2801,6 +2801,14 @@ void MessageMap::addPollMessage(bool toFront, Message* message) {
   }
 }
 
+void MessageMap::removePollMessage(ebusd::Message *message) {
+  if (message != nullptr) {
+    lock();
+    m_pollMessages.remove(message);
+    unlock();
+  }
+}
+
 bool MessageMap::decodeCircuit(const string& circuit, OutputFormat outputFormat, ostringstream* output) const {
   const auto it = m_circuitData.find(circuit);
   if (it == m_circuitData.end()) {

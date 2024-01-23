@@ -639,6 +639,8 @@ void MqttHandler::notifyMqttTopic(const string& topic, const string& data) {
       auto pollPriority = (size_t)parseInt(args.c_str(), 10, 1, 9, &ret);
       if (ret == RESULT_OK && pollPriority > 0 && message->setPollPriority(pollPriority)) {
         m_messages->addPollMessage(false, message);
+      } else if (ret == RESULT_OK && pollPriority == 0) {
+        m_messages->removePollMessage(message);
       }
     }
     result_t result = m_busHandler->readFromBus(message, useData);

@@ -835,6 +835,8 @@ result_t MainLoop::executeRead(const vector<string>& args, const string& levels,
   // adjust poll priority
   if (!newDefinition && message != nullptr && pollPriority > 0 && message->setPollPriority(pollPriority)) {
     m_messages->addPollMessage(false, message);
+  } else if (!newDefinition && message != nullptr && pollPriority == 0) {
+    m_messages->removePollMessage(message);
   }
   bool allowCache = !newDefinition && srcAddress == SYN && dstAddress == SYN && maxAge > 0 && params.length() == 0;
   Message* cacheMessage = allowCache ? m_messages->find(circuit, name, levels, false, true) : nullptr;
